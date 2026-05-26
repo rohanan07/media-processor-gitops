@@ -21,7 +21,7 @@ spec:
             - name: AWS_REGION
               value: "us-east-1"
             - name: AWS_S3_BUCKET
-              value: "media-processor-dev-storage-bucket"
+              value: "media-processor-dev-storage-443245368315"
             - name: DYNAMODB_TABLE
               value: "media-processor-dev-jobs"
             - name: REDIS_URL
