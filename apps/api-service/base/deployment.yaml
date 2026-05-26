@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-service
+  labels:
+    app: api-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-service
+  template:
+    metadata:
+      labels:
+        app: api-service
+    spec:
+      containers:
+        - name: api-container
+          image: media-processor-api # Placeholder name
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: AWS_REGION
+              value: "us-east-1"
+            - name: AWS_S3_BUCKET
+              value: "media-processor-dev-storage-bucket" # Handled matching Terraform naming
+            - name: DYNAMODB_TABLE
+              value: "media-processor-dev-jobs"
+            - name: REDIS_URL
+              value: "redis://redis-service.dev.svc.cluster.local:6379" # Internal cluster DNS
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"

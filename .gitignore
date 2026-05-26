@@ -1,0 +1,22 @@
+# Block local secret files or private access parameters
+*.env
+*.pem
+*secret*.yaml
+*secret*.yml
+credentials/
+
+# OS-specific junk files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# IDE configuration folders
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
