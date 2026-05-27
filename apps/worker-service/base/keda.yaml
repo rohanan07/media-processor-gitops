@@ -1,0 +1,22 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: redis-worker-scaler
+  namespace: dev
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: worker-service # The exact name of the deployment we want to scale
+  minReplicaCount: 0   # Serverless optimization: Scale down to 0 if the queue is empty to save AWS costs!
+  maxReplicaCount: 10  # Maximum cap to avoid runaway AWS Fargate bills
+  cooldownPeriod:  30  # Wait 30 seconds before scaling down after the queue is cleared
+  pollingInterval: 5   # Check the Redis queue length every 5 seconds
+  triggers:
+    - type: redis
+      metadata:
+        key: media-processor-jobs # The exact name of the Redis List queue we are watching
+        type: list
+        value: "5" # Target value: Provision 1 new pod for every 5 items in the queue
+        host: redis-service.dev.svc.cluster.local
+        port: "6379"
