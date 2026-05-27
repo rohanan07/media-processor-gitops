@@ -6,4 +6,4 @@ resources:
 images:
   - name: media-processor-api
     newName: 443245368315.dkr.ecr.us-east-1.amazonaws.com/media-processor-api
-    newTag: latest # GitHub Actions will automatically update this string on every push
+    newTag: 2c515be177c5cac793c56297f75cdfffb49ec171
