@@ -7,4 +7,4 @@ resources:
 images:
   - name: media-processor-api
     newName: 443245368315.dkr.ecr.us-east-1.amazonaws.com/media-processor-api
-    newTag: 2c515be177c5cac793c56297f75cdfffb49ec171
+    newTag: 4457b201428380e497dd701c251aac4b36f9ea5e
